@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>ANGULAR DEMO3</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js">
+	</script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+</head>
+
+<body ng-controller="myCtrl" style="padding: 50px">	
+
+<p>
+	<input type="text" class="form-control" placeholder="Search" ng-model="searchText" 
+	style="padding: 10px; border-radius: 5px; width: 300px"/>
+</p>
+
+<div class="panel panel-primary" ng-repeat="students in students | filter:searchText" 
+    style="width: 300px;float: left;margin-right: 10px;">
+	<div class="panel-heading">{{students.name}}</div>
+	<div class="panel-body">
+	ROLLNO: {{students.rollno}}<br>
+	DOB: {{students.dob}}<br>
+	ADDRESS: {{students.address}}</div>
+</div>
+
+<div style="clear: left;">
+	<h3 style="color: #d98138">Please Add Your Details</h3>
+</div>
+
+<div class="panel-heading">
+	<input type="text" placeholder="enter student name" size="100" ng-model="new_student.name" style="width: 270px;"/>
+</div>
+<div class="panel-body">
+	<p>
+		<input type="text" placeholder="enter student rollno" size="10" ng-model="new_student.rollno" style="width: 270px;"/>
+	</p>
+	<p>
+		<input type="text" placeholder="enter student dob" size="10" ng-model="new_student.dob" style="width: 270px;"/>
+	</p>
+	<p>
+		<input type="text" placeholder="enter student address" size="10" ng-model="new_student.address" style="width: 270px;"/>
+	</p>
+	<button type="button" ng-click="addStudent(new_student)" class="btn btn-success">Submit</button>
+</div>
+
+
+
+<script type="text/javascript">
+	
+	var app=angular.module('myApp',[]);
+	app.controller('myCtrl',function($scope) {
+
+		$scope.students=[
+	{name:'Parmeshwari',rollno:'566',dob:'20/11/1998',address:'hyderabad'},
+	{name:'Harshitha',rollno:'561',dob:'30/10/2000',address:'suryapet'},
+	{name:'Dilip',rollno:'562',dob:'05/11/2000',address:'warangal'},
+	{name:'Vishwanth',rollno:'584',dob:'10/01/1996',address:'warangal'},
+	{name:'Nikhil',rollno:'505',dob:'22/04/2000',address:'hyderabad'}];
+
+	$scope.addStudent=function(student) {
+		// body...
+		$scope.students.push(student)
+		$scope.new_student=[];
+	}
+
+	});
+</script>
+</body>
+</html>
